@@ -1,21 +1,18 @@
 const express = require("express");
 const formRouter = express.Router();
+const userController = require("../../Controller/userController");
 
-const form = formRouter.get("/user", (req, res) => {
-  res.render("user/formPage");
-});
+const form = formRouter.get("/user", userController.homepage);
 
-const formPost = formRouter.post("/user", (req, res) => {
-  console.log(req.body);
-  res.send("Form submitted");
-});
+const formPost = formRouter.post("/user", userController.userlogin);
 
-const newform = formRouter.get("/user/newregsiter", (req, res) => {
-  res.render("user/userRegister");
-});
+const newform = formRouter.get("/user/newregsiter", userController.newRegister);
+
+const newUser = formRouter.post("/user/newUser", userController.newuser);
 
 module.exports = {
   form,
   formPost,
   newform,
+  newUser,
 };
