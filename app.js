@@ -17,5 +17,5 @@ app.use(adminRouter);
 app.use(productRouter);
 
 app.listen(3000, () => {
-  console.log("server is starting");
+  console.log("server is starting localhost");
 });
