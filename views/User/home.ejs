@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User home page</title>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <%- include("partials/header") %>
+
+    <!-- MAIN BODY -->
+
+
+     <div style="display:flex; flex-wrap:wrap; justify-content:center;">
+
+        <% products.forEach(product => { %>
+            <%- include("partials/card", { product: product }) %>
+        <% }) %>
+
+    </div>
+
+    <script>
+        alert("Welcome back 🎉");
+    </script>
+
+</body>
+</html>

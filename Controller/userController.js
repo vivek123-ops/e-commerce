@@ -9,13 +9,9 @@ const userlogin = async (req, res) => {
     const { username, email, Gender, password } = req.body;
     const [rows] = await users.finduser(username, email, Gender, password);
     if (rows.length > 0) {
-      res.send(`<script>
-          alert("Login successful ✅");
-            </script>`);
+      return res.render("User/home");
     }
-    res.send(`<script>
-          alert("Login is not successful ✅");
-        </script>`);
+    return res.render("404");
   } catch (error) {
     console.log(error);
   }
@@ -33,7 +29,6 @@ const newuser = async (req, res) => {
     console.log("data is added");
     res.send(` <script>
         alert("User registered successfully ✅");
-        window.location.href = "/user";
         </script>`);
   } catch (error) {
     console.log(error);

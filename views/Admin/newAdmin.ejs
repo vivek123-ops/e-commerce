@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Register</title>
+</head>
+
+<body
+    style="margin:0; font-family:'Segoe UI', sans-serif; background:#667eea; display:flex; justify-content:center; align-items:center; height:100vh;">
+
+    <div style="background:#fff; padding:23px; width:340px; border-radius:8px; border:1px solid #ddd;">
+
+        <h2 style="text-align:center; margin-bottom:15px; color:#333; font-size:18px;">
+            Create Account
+        </h2>
+
+        <form action="/user/newadmin" method="POST">
+
+            <label style="font-size:13px; color:#555;">Full Name</label>
+            <input type="text" name="fullname"
+                style="width:100%; padding:8px; margin:5px 0 10px 0; border:1px solid #ccc; border-radius:4px; font-size:13px;">
+
+            <label style="font-size:13px; color:#555;">Email</label>
+            <input type="email" name="email"
+                style="width:100%; padding:8px; margin:5px 0 10px 0; border:1px solid #ccc; border-radius:4px; font-size:13px;">
+
+            <label style="font-size:13px; color:#555;">Phone</label>
+            <input type="text" name="phone"
+                style="width:100%; padding:8px; margin:5px 0 10px 0; border:1px solid #ccc; border-radius:4px; font-size:13px;">
+
+            <label style="font-size:13px; color:#555;">Gender</label><br>
+
+            <input type="radio" name="gender" value="male">
+            <label style="margin-right:12px; font-size:13px;">Male</label>
+
+            <input type="radio" name="gender" value="female">
+            <label style="font-size:13px;">Female</label>
+
+            <br><br>
+
+            <label style="font-size:13px; color:#555;">Password</label>
+            <input type="password" name="password"
+                style="width:100%; padding:8px; margin:5px 0 10px 0; border:1px solid #ccc; border-radius:4px; font-size:13px;">
+
+
+
+            <button type="submit"
+                style="width:100%; padding:8px; background:#333; color:white; border:none; border-radius:4px; cursor:pointer; font-size:14px;">
+                Register
+            </button>
+        </form>
+    </div>
+
+</body>
+
+</html>
