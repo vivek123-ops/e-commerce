@@ -12,11 +12,14 @@ const {
   createaccount,
   checkadmin,
 } = require("./Router/AdminRouter/formRouter");
+const {productSubmit } = require("./Router/AdminRouter/productRouter");
+
+
 
 const app = express();
 app.set("view engine", "ejs");
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(homePage);
 app.use(form);
@@ -27,6 +30,7 @@ app.use(adminform);
 app.use(checkadmin);
 app.use(newadmin);
 app.use(createaccount);
+app.use(productSubmit)
 
 app.listen(3000, () => {
   console.log("server is starting");

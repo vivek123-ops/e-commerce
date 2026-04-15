@@ -1,4 +1,5 @@
 const Admin = require("../module/adminmodule");
+const Product = require("../module/Productmodue");
 
 const adminform = (req, res) => {
   res.render("Admin/formPage");
@@ -14,10 +15,7 @@ const createaccount = async (req, res) => {
     const newadmin = new Admin(fullname, email, phone, gender, password);
     await newadmin.save();
     console.log("data is submit");
-    return res.send(`<script>
-        alert("data is submit");
-        window.location.href="/admin"
-      </script>`);
+    res.render("Admin/ProductPage")
   } catch (error) {
     console.log(error);
   }
@@ -26,18 +24,10 @@ const createaccount = async (req, res) => {
 const checkadmin = async (req, res) => {
   console.log(req.body);
   try {
-    const { username,email,Gender,password } = req.body;
-    const [rows] = await Admin.checkadmin(
-      username,
-      email,
-      Gender,
-      password,
-    );
+    const { username, email, Gender, password } = req.body;
+    const [rows] = await Admin.checkadmin(username, email, Gender, password);
     if (rows.length > 0) {
-      return res.send(`<script>
-        alert("Welcome admin");
-        window.location.href="/admin"
-      </script>`);
+      return res.render("Admin/productPage");
     }
     return res.send(`<script>
         alert("admin id is incorrect");
@@ -48,9 +38,23 @@ const checkadmin = async (req, res) => {
   }
 };
 
+const productadd = async (req, res) => {
+  console;
+  try {
+    console.log(req.body);
+    const { name, price, category, description, image } = req.body;
+    const newProduct = new Product(name, price, category, description, image);
+    await newProduct.save();
+    return res.render("Admin/productPage");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   adminform,
   newadmin,
   createaccount,
   checkadmin,
+  productadd,
 };
