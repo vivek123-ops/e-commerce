@@ -1,18 +1,13 @@
 const express = require("express");
-const formRouter = express.Router();
+const adminRouter = express.Router();
 const adminController = require("../../Controller/AdminController");
 
-const adminform = formRouter.get("/admin", adminController.adminform);
+adminRouter.get("/admin", adminController.adminform);
 
-const newadmin = formRouter.get("/user/newadmin", adminController.newadmin);
+adminRouter.get("/user/newadmin", adminController.newadmin);
 
-const createaccount = formRouter.post("/user/newadmin",adminController.createaccount);
+adminRouter.post("/user/newadmin",adminController.createaccount);
 
-const checkadmin = formRouter.post("/admin", adminController.checkadmin);
+adminRouter.post("/admin", adminController.checkadmin);
 
-module.exports = {
-  adminform,
-  newadmin,
-  createaccount,
-  checkadmin,
-};
+module.exports=adminRouter;
