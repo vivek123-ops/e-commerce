@@ -15,20 +15,24 @@ const createaccount = async (req, res) => {
     const newadmin = new Admin(fullname, email, phone, gender, password);
     await newadmin.save();
     console.log("data is submit");
-    res.render("Admin/ProductPage")
+    res.render("Admin/ProductPage");
   } catch (error) {
     console.log(error);
   }
 };
 
 const checkadmin = async (req, res) => {
-  console.log(req.body);
   try {
     const { username, email, Gender, password } = req.body;
+
     const [rows] = await Admin.checkadmin(username, email, Gender, password);
+
     if (rows.length > 0) {
-      return res.render("Admin/productPage");
+      const userId = rows[0].user_id; // ✅ pehle variable banao
+      console.log(userId);
+      return res.render("Admin/productPage", { userId: userId }); // ✅ pass correctly
     }
+
     return res.send(`<script>
         alert("admin id is incorrect");
         window.location.href="/admin"
@@ -39,16 +43,26 @@ const checkadmin = async (req, res) => {
 };
 
 const productadd = async (req, res) => {
-  console;
   try {
-    console.log(req.body);
+    const { userId } = req.params;
     const { name, price, category, description, image } = req.body;
-    const newProduct = new Product(name, price, category, description, image);
+    const newProduct = new Product(
+      name,
+      price,
+      category,
+      description,
+      image,
+      userId,
+    );
     await newProduct.save();
-    return res.render("Admin/productPage");
+    return res.render("Admin/productPage", { userId: userId });
   } catch (error) {
     console.log(error);
   }
+};
+
+const productPage = (req, res) => {
+  res.render("Admin/productPage", { userId: userId });
 };
 
 module.exports = {
@@ -57,4 +71,5 @@ module.exports = {
   createaccount,
   checkadmin,
   productadd,
+  productPage,
 };
